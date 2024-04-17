@@ -22,11 +22,11 @@ public class ClassTransformer implements AgentBuilder.Transformer {
             ProtectionDomain protectionDomain) {
         
         String typeName = typeDescription.getTypeName();
-        if ("com.mysql.cj.jdbc.ConnectionImpl".equals(typeName)) {
-            int modifiers = ACC_PRIVATE | ACC_VOLATILE;
-            builder = builder.defineField(AgentConstant.CACHE_FIELD_NAME, Object.class, modifiers)
-                             .implement(CacheFieldInstance.class)
-                             .intercept(FieldAccessor.ofField(AgentConstant.CACHE_FIELD_NAME));
+        System.out.println("进入了A：transform: " + typeName);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
         return builder;
     }
